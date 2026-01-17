@@ -514,18 +514,22 @@ if (document.readyState === 'loading') {
 }
 
 // Search Functionality - Connected to Database API
-const searchInput = document.getElementById('searchInput');
-const searchBtn = document.getElementById('searchBtn');
-const searchResults = document.getElementById('searchResults');
+// Initialize search elements when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const searchResults = document.getElementById('searchResults');
+    const mobileSearchInput = document.getElementById('mobileSearchInput');
+    const mobileSearchBtn = document.getElementById('mobileSearchBtn2');
 
-// API Base URL - use the one from config.js or admin-utils.js (loaded before this file)
-// If neither is loaded, fallback to default
-if (typeof window.API_BASE_URL === 'undefined') {
-    // Default to localhost for development
-    // For production, update config.js with your backend URL
-    window.API_BASE_URL = 'http://localhost:3000/api';
-}
-// Use window.API_BASE_URL directly - don't redeclare to avoid conflicts
+    // API Base URL - use the one from config.js or admin-utils.js (loaded before this file)
+    // If neither is loaded, fallback to default
+    if (typeof window.API_BASE_URL === 'undefined') {
+        // Default to localhost for development
+        // For production, update config.js with your backend URL
+        window.API_BASE_URL = 'http://localhost:3000/api';
+    }
+    // Use window.API_BASE_URL directly - don't redeclare to avoid conflicts
 
 // Debounce function for search
 let searchTimeout;
@@ -647,10 +651,12 @@ if (mobileSearchBtn) {
     });
 }
 
-function displaySearchResults(parts) {
-    searchResults.innerHTML = '';
-    
-    if (parts.length > 0) {
+    function displaySearchResults(parts) {
+        if (!searchResults) return;
+        
+        searchResults.innerHTML = '';
+        
+        if (parts.length > 0) {
         // Limit to 10 results for better UX
         const limitedParts = parts.slice(0, 10);
         
@@ -707,12 +713,13 @@ function displaySearchResults(parts) {
     }
 }
 
-// Close search results when clicking outside
-document.addEventListener('click', (e) => {
-    if (searchResults && !searchInput.contains(e.target) && !searchResults.contains(e.target)) {
-        searchResults.classList.remove('active');
-    }
-});
+    // Close search results when clicking outside
+    document.addEventListener('click', (e) => {
+        if (searchResults && searchInput && !searchInput.contains(e.target) && !searchResults.contains(e.target) && !e.target.closest('.search-container')) {
+            searchResults.classList.remove('active');
+        }
+    });
+}); // End of DOMContentLoaded
 
 // Contact/Inquiry Functionality
 function contactForProduct(productName) {
