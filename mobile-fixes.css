@@ -70,7 +70,7 @@ html, body {
         display: none !important;
     }
     
-    /* Search Icon Button */
+    /* Search Icon Button - Show on mobile */
     .search-icon-btn {
         display: flex !important;
         align-items: center !important;
@@ -83,11 +83,18 @@ html, body {
         color: var(--text-dark) !important;
         font-size: 1.2rem !important;
         cursor: pointer !important;
-        transition: all 0.2s ease !important;
+        transition: all 0.3s ease !important;
+        flex-shrink: 0 !important;
+    }
+    
+    .search-icon-btn:hover {
+        background: rgba(255, 107, 53, 0.1) !important;
+        color: var(--orange-dark) !important;
     }
     
     .search-icon-btn:active {
-        background: rgba(255, 107, 53, 0.1) !important;
+        background: rgba(255, 107, 53, 0.15) !important;
+        transform: scale(0.95) !important;
     }
     
     /* Hamburger Menu Button */

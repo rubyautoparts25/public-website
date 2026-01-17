@@ -599,8 +599,35 @@ body.splash-active {
     margin-left: auto;
 }
 
+/* Search Icon Button - Hidden on desktop, shown on mobile */
+.search-icon-btn {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    color: var(--text-dark);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s var(--ease-out-expo);
+    flex-shrink: 0;
+}
+
+.search-icon-btn:hover {
+    background: rgba(255, 107, 53, 0.1);
+    color: var(--orange-dark);
+}
+
+.search-icon-btn:active {
+    transform: scale(0.95);
+}
+
 .search-container {
     position: relative;
+    display: block;
 }
 
 .search-input {
