@@ -537,9 +537,9 @@ function debounceSearch(func, delay) {
 }
 
 // Search parts from database
-async function searchParts(query) {
+async function searchParts(query, isMobile = false) {
     if (!query || query.trim().length < 2) {
-        searchResults.classList.remove('active');
+        if (searchResults) searchResults.classList.remove('active');
         return;
     }
 
@@ -548,13 +548,32 @@ async function searchParts(query) {
         const result = await response.json();
         
         if (result.success && result.data) {
-            displaySearchResults(result.data);
+            if (isMobile) {
+                // For mobile, navigate directly to category page with search
+                if (result.data.length > 0) {
+                    const firstPart = result.data[0];
+                    window.location.href = `category-parts.html?category=${firstPart.category}&search=${encodeURIComponent(query)}`;
+                } else {
+                    // No results, still navigate to show "no results" message
+                    window.location.href = `category-parts.html?search=${encodeURIComponent(query)}`;
+                }
+            } else {
+                displaySearchResults(result.data);
+            }
         } else {
-            displaySearchResults([]);
+            if (isMobile) {
+                window.location.href = `category-parts.html?search=${encodeURIComponent(query)}`;
+            } else {
+                displaySearchResults([]);
+            }
         }
     } catch (error) {
         console.error('Error searching parts:', error);
-        displaySearchResults([]);
+        if (isMobile) {
+            window.location.href = `category-parts.html?search=${encodeURIComponent(query)}`;
+        } else {
+            displaySearchResults([]);
+        }
     }
 }
 
@@ -583,11 +602,47 @@ if (searchBtn) {
     searchBtn.addEventListener('click', () => {
         const query = searchInput.value.trim();
         if (query.length >= 2) {
-            searchParts(query);
+            searchParts(query, false);
         } else if (query.length > 0) {
             // If query is too short, show message
-            searchResults.innerHTML = '<div class="search-result-item">Please enter at least 2 characters</div>';
-            searchResults.classList.add('active');
+            if (searchResults) {
+                searchResults.innerHTML = '<div class="search-result-item">Please enter at least 2 characters</div>';
+                searchResults.classList.add('active');
+            }
+        }
+    });
+}
+
+// Mobile Search Functionality
+if (mobileSearchInput) {
+    mobileSearchInput.addEventListener('input', (e) => {
+        const query = e.target.value.trim();
+        // For mobile, we'll search on button click or enter, not on every keystroke
+    });
+
+    // Handle Enter key for mobile search
+    mobileSearchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            const query = mobileSearchInput.value.trim();
+            if (query.length >= 2) {
+                searchParts(query, true);
+            }
+        }
+    });
+}
+
+if (mobileSearchBtn) {
+    mobileSearchBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const query = mobileSearchInput ? mobileSearchInput.value.trim() : '';
+        if (query.length >= 2) {
+            searchParts(query, true);
+        } else if (query.length > 0) {
+            alert('Please enter at least 2 characters to search');
+        } else {
+            alert('Please enter a search term');
         }
     });
 }
