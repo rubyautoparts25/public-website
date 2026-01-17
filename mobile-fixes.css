@@ -1,0 +1,279 @@
+/* Comprehensive Mobile Fixes for Public Website and Admin */
+
+/* Base Mobile Styles - Apply to all mobile devices */
+@media (max-width: 768px) {
+    /* Prevent horizontal scrolling */
+    * {
+        max-width: 100%;
+    }
+    
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+        position: relative;
+    }
+    
+    /* Container fixes */
+    .container {
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 0 15px !important;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+    
+    /* Typography - Ensure readable text */
+    body {
+        font-size: 16px !important;
+        line-height: 1.6;
+    }
+    
+    h1 {
+        font-size: 1.8rem !important;
+        line-height: 1.3;
+    }
+    
+    h2 {
+        font-size: 1.5rem !important;
+        line-height: 1.3;
+    }
+    
+    h3 {
+        font-size: 1.2rem !important;
+        line-height: 1.3;
+    }
+    
+    /* Buttons - Larger touch targets */
+    button, .btn, .inquire-btn, .finder-btn, .search-btn-large, .search-btn-icon {
+        min-height: 48px !important;
+        min-width: 48px !important;
+        padding: 14px 20px !important;
+        font-size: 16px !important;
+        border-radius: 8px;
+        font-weight: 600;
+    }
+    
+    /* Input fields - Prevent zoom on iOS */
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="number"],
+    input[type="search"],
+    select,
+    textarea {
+        font-size: 16px !important;
+        padding: 14px 16px !important;
+        min-height: 48px;
+        border-radius: 8px;
+        width: 100% !important;
+        box-sizing: border-box;
+    }
+    
+    /* Navigation - Full width mobile menu */
+    .navbar {
+        padding: 12px 0 !important;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+    
+    .nav-menu {
+        position: fixed !important;
+        top: 70px !important;
+        left: -100% !important;
+        width: 100% !important;
+        height: calc(100vh - 70px) !important;
+        background: white !important;
+        flex-direction: column !important;
+        padding: 20px !important;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        overflow-y: auto;
+        transition: left 0.3s ease;
+    }
+    
+    .nav-menu.active {
+        left: 0 !important;
+    }
+    
+    .nav-link {
+        padding: 16px 0 !important;
+        font-size: 1.1rem !important;
+        border-bottom: 1px solid #eee;
+        width: 100%;
+        display: block;
+    }
+    
+    /* Hero section */
+    .hero {
+        padding: 100px 15px 60px !important;
+        text-align: center;
+    }
+    
+    .hero-title {
+        font-size: 2rem !important;
+        line-height: 1.2;
+        margin-bottom: 20px;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem !important;
+        margin-bottom: 30px;
+    }
+    
+    /* Vehicle finder */
+    .vehicle-finder {
+        padding: 20px 15px !important;
+        margin: 20px 0;
+    }
+    
+    .finder-form {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+    
+    .finder-select {
+        width: 100% !important;
+        padding: 14px 16px !important;
+        font-size: 16px !important;
+        min-height: 48px;
+    }
+    
+    .finder-btn {
+        width: 100% !important;
+        margin-top: 10px;
+    }
+    
+    /* Grid layouts - Single column on mobile */
+    .categories-grid,
+    .brands-grid,
+    .products-grid,
+    .services-grid,
+    .parts-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+    
+    /* Cards */
+    .category-card,
+    .brand-card,
+    .product-card,
+    .part-card {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 20px !important;
+    }
+    
+    /* Search boxes */
+    .search-box,
+    .search-box-large,
+    .enhanced-search-wrapper {
+        width: 100% !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+    }
+    
+    .search-input,
+    .search-input-field,
+    .search-input-large {
+        width: 100% !important;
+        font-size: 16px !important;
+        padding: 14px 16px !important;
+    }
+    
+    /* Filters */
+    .filters-container,
+    .filters-sort-bar {
+        flex-direction: column !important;
+        width: 100% !important;
+        padding: 15px !important;
+        gap: 12px !important;
+    }
+    
+    .filter-group {
+        width: 100% !important;
+    }
+    
+    .filter-select {
+        width: 100% !important;
+        font-size: 16px !important;
+        padding: 14px 16px !important;
+    }
+    
+    /* Footer */
+    .footer-content {
+        grid-template-columns: 1fr !important;
+        text-align: center;
+        gap: 30px;
+    }
+    
+    /* Top bar */
+    .top-bar {
+        padding: 10px 0 !important;
+        font-size: 0.85rem;
+    }
+    
+    .top-bar-content {
+        flex-direction: column !important;
+        gap: 8px;
+        text-align: center;
+    }
+    
+    .top-bar-left,
+    .top-bar-right {
+        flex-direction: column !important;
+        gap: 8px;
+        width: 100%;
+    }
+}
+
+/* Extra Small Mobile (320px - 480px) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 12px !important;
+    }
+    
+    .hero {
+        padding: 80px 12px 40px !important;
+    }
+    
+    .hero-title {
+        font-size: 1.6rem !important;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.95rem !important;
+    }
+    
+    .category-title,
+    .section-title {
+        font-size: 1.5rem !important;
+    }
+    
+    button, .btn {
+        padding: 12px 18px !important;
+        font-size: 15px !important;
+    }
+    
+    .part-card,
+    .category-card {
+        padding: 15px !important;
+    }
+    
+    .part-image-container {
+        height: 180px !important;
+    }
+}
+
+/* Landscape Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero {
+        padding: 60px 15px 40px !important;
+        min-height: auto;
+    }
+    
+    .nav-menu {
+        max-height: 80vh;
+    }
+}
+
