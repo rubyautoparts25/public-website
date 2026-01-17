@@ -41,9 +41,35 @@ body {
 }
 
 /* Touch-friendly improvements */
-button, a, .btn, .category-card, .brand-card, .product-card, .service-card {
+button, a, .btn, .category-card, .brand-card, .product-card, .service-card, 
+.part-card, .inquire-btn, .admin-btn, .admin-edit-btn, .admin-delete-btn {
     -webkit-tap-highlight-color: rgba(255, 107, 53, 0.2);
     touch-action: manipulation;
+    cursor: pointer;
+}
+
+/* Prevent text selection on buttons for better mobile UX */
+button, .btn, .admin-btn {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Improve touch targets for mobile */
+@media (max-width: 768px) {
+    button, .btn, a, .category-card, .brand-card, .part-card {
+        min-height: 44px; /* iOS recommended touch target size */
+        min-width: 44px;
+    }
+    
+    .hamburger {
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 /* Splash Screen Styles */
