@@ -445,9 +445,11 @@ const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('searchBtn');
 const searchResults = document.getElementById('searchResults');
 
-// API Base URL - use the one from admin-utils.js (loaded before this file)
-// If admin-utils.js isn't loaded, fallback to default
+// API Base URL - use the one from config.js or admin-utils.js (loaded before this file)
+// If neither is loaded, fallback to default
 if (typeof window.API_BASE_URL === 'undefined') {
+    // Default to localhost for development
+    // For production, update config.js with your backend URL
     window.API_BASE_URL = 'http://localhost:3000/api';
 }
 // Use window.API_BASE_URL directly - don't redeclare to avoid conflicts

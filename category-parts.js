@@ -221,8 +221,9 @@ async function loadCategoryParts(category) {
 window.loadPartsData = loadPartsData;
 window.loadCategoryParts = loadCategoryParts;
 
-// API Configuration - Use the one from admin-utils.js (loaded before this file)
-// API_BASE_URL is already declared in admin-utils.js, so we just use it
+// API Configuration - Use the one from config.js or admin-utils.js (loaded before this file)
+// API_BASE_URL should be set in config.js or admin-utils.js
+// If not set, it will default to localhost (for development)
 
 // Parts data - loaded from API
 let PARTS_DATA = {};
