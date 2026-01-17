@@ -112,32 +112,106 @@ html, body {
         z-index: 1000 !important;
         width: 100% !important;
         max-width: 100% !important;
+        background: rgba(255, 255, 255, 0.95) !important;
+        backdrop-filter: blur(20px) !important;
     }
     
     .nav-content {
         width: 100% !important;
         max-width: 100% !important;
         padding: 0 12px !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        gap: 10px !important;
     }
     
+    /* Logo container - smaller on mobile */
+    .logo-container {
+        flex-shrink: 0 !important;
+    }
+    
+    .logo {
+        height: 40px !important;
+    }
+    
+    .logo-text {
+        font-size: 1.1rem !important;
+    }
+    
+    /* Hamburger - ALWAYS VISIBLE on mobile */
+    .hamburger {
+        display: flex !important;
+        min-width: 48px !important;
+        min-height: 48px !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-shrink: 0 !important;
+        order: 3 !important;
+    }
+    
+    /* Search container - visible in navbar on mobile */
+    .nav-actions {
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+        flex-shrink: 0 !important;
+        order: 2 !important;
+    }
+    
+    .search-container {
+        display: block !important;
+        position: relative !important;
+        width: auto !important;
+    }
+    
+    .search-input {
+        width: 150px !important;
+        max-width: 150px !important;
+        padding: 8px 40px 8px 12px !important;
+        font-size: 14px !important;
+        min-height: 40px !important;
+        border-radius: 20px !important;
+    }
+    
+    .search-input:focus {
+        width: 180px !important;
+        max-width: 180px !important;
+    }
+    
+    .search-btn {
+        width: 32px !important;
+        height: 32px !important;
+        right: 4px !important;
+    }
+    
+    /* Hide nav menu by default, show when hamburger clicked */
     .nav-menu {
         position: fixed !important;
-        top: 60px !important;
+        top: 0 !important;
         left: -100% !important;
         width: 100vw !important;
         max-width: 100vw !important;
-        height: calc(100vh - 60px) !important;
+        height: 100vh !important;
         background: white !important;
         flex-direction: column !important;
-        padding: 20px 15px !important;
+        padding: 80px 20px 20px 20px !important;
         box-shadow: 0 4px 20px rgba(0,0,0,0.15) !important;
         overflow-y: auto !important;
         transition: left 0.3s ease !important;
         z-index: 9999 !important;
+        margin: 0 !important;
     }
     
     .nav-menu.active {
         left: 0 !important;
+    }
+    
+    /* Add search bar inside mobile menu */
+    .nav-menu::before {
+        content: '';
+        display: block;
+        margin-bottom: 20px;
     }
     
     .nav-link {
@@ -149,12 +223,30 @@ html, body {
         word-wrap: break-word !important;
     }
     
-    .hamburger {
-        display: flex !important;
-        min-width: 48px !important;
-        min-height: 48px !important;
-        align-items: center !important;
-        justify-content: center !important;
+    /* Search bar inside mobile menu */
+    .mobile-search-container {
+        display: block !important;
+        width: 100% !important;
+        margin-bottom: 20px !important;
+        padding: 0 !important;
+    }
+    
+    .mobile-search-input {
+        width: 100% !important;
+        padding: 12px 50px 12px 15px !important;
+        font-size: 16px !important;
+        border: 2px solid rgba(0, 0, 0, 0.1) !important;
+        border-radius: 25px !important;
+        box-sizing: border-box !important;
+    }
+    
+    .mobile-search-btn {
+        position: absolute !important;
+        right: 8px !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        width: 36px !important;
+        height: 36px !important;
     }
     
     /* Top Bar - Compact horizontal layout */
@@ -554,8 +646,20 @@ html, body {
     }
     
     .nav-menu {
-        top: 50px !important;
-        height: calc(100vh - 50px) !important;
+        top: 0 !important;
+        height: 100vh !important;
+        padding-top: 80px !important;
+    }
+    
+    /* Ensure hamburger is always visible */
+    .hamburger {
+        display: flex !important;
+    }
+    
+    /* Ensure search is visible in navbar */
+    .nav-actions,
+    .search-container {
+        display: flex !important;
     }
 }
 

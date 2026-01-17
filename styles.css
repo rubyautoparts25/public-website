@@ -2291,13 +2291,7 @@ body.splash-active {
         height: 40px;
     }
 
-    .nav-actions {
-        display: none;
-    }
-
-    .search-container {
-        display: none;
-    }
+    /* Search and nav-actions visibility handled in mobile-fixes.css */
 
     .top-bar-dropdown {
         display: none;
