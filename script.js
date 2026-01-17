@@ -352,40 +352,7 @@ document.querySelectorAll('.feature-card, .product-card, .service-card, .testimo
 });
 
 // Vehicle Finder Functionality
-const vehicleData = {
-    maruti: {
-        models: ['Swift', 'Dzire', 'Alto', 'Wagon R', 'Baleno', 'Vitara Brezza', 'Ertiga'],
-        years: ['2020-2024', '2015-2019', '2010-2014', '2005-2009']
-    },
-    hyundai: {
-        models: ['i20', 'i10', 'Creta', 'Verna', 'Elantra', 'Tucson', 'Venue'],
-        years: ['2020-2024', '2015-2019', '2010-2014', '2005-2009']
-    },
-    tata: {
-        models: ['Nexon', 'Harrier', 'Safari', 'Tiago', 'Altroz', 'Punch'],
-        years: ['2020-2024', '2015-2019', '2010-2014']
-    },
-    mahindra: {
-        models: ['XUV700', 'XUV300', 'Scorpio', 'Bolero', 'Thar'],
-        years: ['2020-2024', '2015-2019', '2010-2014']
-    },
-    honda: {
-        models: ['City', 'Amaze', 'WR-V', 'CR-V', 'Civic'],
-        years: ['2020-2024', '2015-2019', '2010-2014']
-    },
-    toyota: {
-        models: ['Innova', 'Fortuner', 'Camry', 'Corolla', 'Glanza'],
-        years: ['2020-2024', '2015-2019', '2010-2014']
-    },
-    ford: {
-        models: ['EcoSport', 'Endeavour', 'Figo', 'Aspire'],
-        years: ['2020-2024', '2015-2019', '2010-2014']
-    },
-    volkswagen: {
-        models: ['Polo', 'Vento', 'Virtus', 'Taigun', 'Tiguan'],
-        years: ['2020-2024', '2015-2019', '2010-2014']
-    }
-};
+// Simplified: Only uses manufacturer (carBrand) since database doesn't store model/year
 
 // Vehicle Finder - Wait for DOM to be ready
 // Simplified version: Only uses manufacturer (carBrand) since database doesn't store model/year
