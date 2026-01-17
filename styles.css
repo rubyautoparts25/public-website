@@ -468,6 +468,13 @@ body.splash-active {
     flex-wrap: nowrap;
 }
 
+/* Hide mobile-specific menu items on desktop */
+.mobile-menu-header,
+.mobile-search-wrapper,
+.mobile-contact-section {
+    display: none;
+}
+
 .nav-dropdown {
     position: relative;
 }

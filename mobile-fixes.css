@@ -198,6 +198,13 @@ html, body {
         color: var(--orange-dark) !important;
     }
     
+    /* Show mobile-specific menu items on mobile */
+    .mobile-menu-header,
+    .mobile-search-wrapper,
+    .mobile-contact-section {
+        display: block !important;
+    }
+    
     /* Search in Menu */
     .mobile-search-wrapper {
         padding: 16px 20px !important;
