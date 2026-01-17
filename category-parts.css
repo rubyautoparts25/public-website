@@ -857,9 +857,6 @@
 
 .part-details-modal-content {
     background: var(--white);
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
     border-radius: 20px;
     max-width: 700px;
     width: 100%;
@@ -868,6 +865,8 @@
     position: relative;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
     animation: modalFadeIn 0.3s ease-out;
+    box-sizing: border-box;
+    margin: 10px;
 }
 
 @keyframes modalFadeIn {
@@ -1121,66 +1120,85 @@
 
 @media (max-width: 480px) {
     .part-details-modal {
-        padding: 5px !important;
+        padding: 0 !important;
         align-items: flex-start !important;
+        width: 100vw !important;
+        max-width: 100vw !important;
     }
     
     .part-details-modal-content {
         max-width: 100% !important;
-        max-height: 95vh !important;
-        margin: 5px !important;
-        border-radius: 10px;
-        width: calc(100% - 10px) !important;
+        width: 100% !important;
+        max-height: 98vh !important;
+        margin: 0 !important;
+        border-radius: 10px !important;
+        box-sizing: border-box !important;
     }
 
     .part-details-header {
         flex-direction: column !important;
-        padding: 15px !important;
-        padding-top: 15px !important;
+        padding: 15px 12px !important;
+        padding-top: 60px !important;
         gap: 15px !important;
-        text-align: center;
-        padding: 20px;
-        padding-top: 70px;
-        gap: 20px;
-        min-height: auto;
+        text-align: center !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
     
     .part-details-image-wrapper {
-        margin-bottom: 20px;
-        margin-right: 0;
-        width: 150px;
-        height: 150px;
-        align-self: center;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-bottom: 15px !important;
+        margin-right: 0 !important;
+        height: auto !important;
+        min-height: 200px !important;
+        align-self: center !important;
     }
 
     .part-details-image,
     .part-details-image-placeholder {
-        width: 150px;
-        height: 150px;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        max-height: 250px !important;
     }
     
     .part-details-title {
-        min-width: 100%;
-        text-align: center;
+        width: 100% !important;
+        min-width: 100% !important;
+        text-align: center !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
     }
     
     .part-details-title h2 {
-        margin-top: 0;
-        padding-top: 0;
-        font-size: 1.4rem;
+        margin-top: 0 !important;
+        padding-top: 0 !important;
+        font-size: 1.3rem !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
     }
 
     .part-details-body {
-        padding: 20px;
+        padding: 15px 12px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
 
     .part-details-row {
-        grid-template-columns: 1fr;
-        gap: 15px;
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
     }
 
     .part-details-footer {
-        padding: 20px;
+        padding: 15px 12px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+    
+    .part-details-footer .btn {
+        width: 100% !important;
+        min-height: 48px !important;
     }
 }
 
