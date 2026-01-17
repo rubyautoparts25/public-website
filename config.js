@@ -11,12 +11,7 @@
 
 // Set default if not already set
 if (typeof window.API_BASE_URL === 'undefined') {
-    // Default to localhost for development
-    // For production, update this or set via environment variable
-    window.API_BASE_URL = 'http://localhost:3000/api';
-    
-    // If deployed on Vercel, you can use environment variables
-    // Vercel exposes env vars via process.env, but for client-side, you'd need to
-    // inject them during build or use a config endpoint
+    // Production API URL (Railway)
+    window.API_BASE_URL = 'https://server-side-production-7658.up.railway.app/api';
 }
 
