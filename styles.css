@@ -2125,17 +2125,8 @@ body.splash-active {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .top-bar-content {
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
-    }
-
-    .top-bar-left {
-        flex-direction: column;
-        gap: 10px;
-    }
-
+    /* Top bar styles moved to mobile-fixes.css for better control */
+    
     .navbar {
         top: 0;
     }
@@ -2360,23 +2351,7 @@ body.splash-active {
         padding: 0 15px;
     }
 
-    .top-bar {
-        padding: 8px 0;
-        font-size: 0.8rem;
-    }
-
-    .top-bar-left {
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    .top-bar-right {
-        gap: 10px;
-    }
-
-    .social-link {
-        font-size: 0.9rem;
-    }
+    /* Top bar styles moved to mobile-fixes.css for better control */
 
     .navbar {
         padding: 10px 0;

@@ -157,33 +157,74 @@ html, body {
         justify-content: center !important;
     }
     
-    /* Top Bar - Stack vertically */
+    /* Top Bar - Compact horizontal layout */
     .top-bar {
-        padding: 10px 0 !important;
-        font-size: 0.85rem !important;
+        padding: 8px 0 !important;
+        font-size: 0.75rem !important;
         width: 100% !important;
         max-width: 100% !important;
+        min-height: auto !important;
     }
     
     .top-bar-content {
-        flex-direction: column !important;
+        flex-direction: row !important;
+        justify-content: space-between !important;
+        align-items: center !important;
         gap: 8px !important;
-        text-align: center !important;
         width: 100% !important;
-        padding: 0 12px !important;
+        padding: 0 10px !important;
+        flex-wrap: wrap !important;
     }
     
-    .top-bar-left,
+    .top-bar-left {
+        flex-direction: row !important;
+        gap: 12px !important;
+        flex: 1 1 auto !important;
+        min-width: 0 !important;
+        justify-content: flex-start !important;
+        align-items: center !important;
+    }
+    
     .top-bar-right {
-        flex-direction: column !important;
+        flex-direction: row !important;
         gap: 8px !important;
-        width: 100% !important;
-        justify-content: center !important;
+        flex-shrink: 0 !important;
+        justify-content: flex-end !important;
+        align-items: center !important;
     }
     
     .top-bar-link {
-        font-size: 0.9rem !important;
-        word-wrap: break-word !important;
+        font-size: 0.7rem !important;
+        white-space: nowrap !important;
+        padding: 4px 6px !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 4px !important;
+    }
+    
+    .top-bar-link i {
+        font-size: 0.75rem !important;
+    }
+    
+    /* Hide dropdown text on mobile, show only icon */
+    .top-bar-dropdown .top-bar-link {
+        font-size: 0 !important;
+        padding: 6px 8px !important;
+    }
+    
+    .top-bar-dropdown .top-bar-link i:first-child {
+        font-size: 0.85rem !important;
+    }
+    
+    .top-bar-dropdown .top-bar-link i.fa-chevron-down {
+        display: none !important;
+    }
+    
+    .social-link {
+        width: 28px !important;
+        height: 28px !important;
+        font-size: 0.85rem !important;
+        padding: 0 !important;
     }
     
     /* Hero Section */
@@ -467,9 +508,49 @@ html, body {
         height: 180px !important;
     }
     
+    /* Top Bar - Even more compact on small screens */
     .top-bar {
-        font-size: 0.75rem !important;
-        padding: 8px 0 !important;
+        font-size: 0.7rem !important;
+        padding: 6px 0 !important;
+    }
+    
+    .top-bar-content {
+        padding: 0 8px !important;
+        gap: 6px !important;
+    }
+    
+    .top-bar-left {
+        gap: 8px !important;
+    }
+    
+    .top-bar-link {
+        font-size: 0.65rem !important;
+        padding: 3px 4px !important;
+        gap: 3px !important;
+    }
+    
+    .top-bar-link i {
+        font-size: 0.7rem !important;
+    }
+    
+    /* Hide email text, show only icon on very small screens */
+    .top-bar-left .top-bar-link:nth-child(2) {
+        font-size: 0 !important;
+        padding: 4px 6px !important;
+    }
+    
+    .top-bar-left .top-bar-link:nth-child(2) i {
+        font-size: 0.8rem !important;
+    }
+    
+    .top-bar-right {
+        gap: 6px !important;
+    }
+    
+    .social-link {
+        width: 26px !important;
+        height: 26px !important;
+        font-size: 0.8rem !important;
     }
     
     .nav-menu {
