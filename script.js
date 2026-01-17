@@ -585,9 +585,9 @@ if (searchInput) {
     searchInput.addEventListener('input', (e) => {
         const query = e.target.value.trim();
         if (query.length >= 2) {
-            debounceSearch(() => searchParts(query), 300)();
+            debounceSearch(() => searchParts(query, false), 300)();
         } else {
-            searchResults.classList.remove('active');
+            if (searchResults) searchResults.classList.remove('active');
         }
     });
 
@@ -596,7 +596,7 @@ if (searchInput) {
         if (e.key === 'Enter') {
             const query = searchInput.value.trim();
             if (query.length >= 2) {
-                searchParts(query);
+                searchParts(query, false);
             }
         }
     });
@@ -681,7 +681,7 @@ if (mobileSearchBtn) {
                 </div>
             `;
             item.addEventListener('click', () => {
-                searchInput.value = part.partName;
+                if (searchInput) searchInput.value = part.partName;
                 searchResults.classList.remove('active');
                 // Navigate to category page with this part's category
                 window.location.href = `category-parts.html?category=${part.category}&search=${encodeURIComponent(part.partName)}`;
@@ -697,7 +697,7 @@ if (mobileSearchBtn) {
             moreItem.style.color = '#666';
             moreItem.textContent = `+${parts.length - 10} more results. Click to see all.`;
             moreItem.addEventListener('click', () => {
-                const query = searchInput.value.trim();
+                const query = searchInput ? searchInput.value.trim() : '';
                 window.location.href = `category-parts.html?search=${encodeURIComponent(query)}`;
             });
             searchResults.appendChild(moreItem);
