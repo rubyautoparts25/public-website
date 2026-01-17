@@ -44,10 +44,22 @@ public-website/
 
 ## 📝 Configuration
 
-Before deploying, ensure:
-- API URL is updated in JavaScript files (if hardcoded)
-- All external CDN links are working
-- Environment variables are set (if needed)
+### Before Deploying:
+
+1. **Update API URL in `config.js`:**
+   ```javascript
+   // Change from:
+   window.API_BASE_URL = 'http://localhost:3000/api';
+   
+   // To your production backend URL:
+   window.API_BASE_URL = 'https://your-backend.railway.app/api';
+   // or
+   window.API_BASE_URL = 'https://your-backend.render.com/api';
+   ```
+
+2. **Ensure your backend API is deployed and accessible**
+
+3. **Verify all external CDN links are working** (Font Awesome, Google Fonts)
 
 ## 🌐 Live Website
 
