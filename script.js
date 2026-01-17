@@ -388,14 +388,13 @@ const vehicleData = {
 };
 
 // Vehicle Finder - Wait for DOM to be ready
+// Simplified version: Only uses manufacturer (carBrand) since database doesn't store model/year
 function setupVehicleFinder(retryCount = 0) {
     const MAX_RETRIES = 50; // Maximum 50 retries (5 seconds total)
     const manufacturerSelect = document.getElementById('manufacturer');
-    const modelSelect = document.getElementById('model');
-    const yearSelect = document.getElementById('year');
     const findPartsBtn = document.getElementById('findPartsBtn');
 
-    if (!manufacturerSelect || !modelSelect || !yearSelect || !findPartsBtn) {
+    if (!manufacturerSelect || !findPartsBtn) {
         if (retryCount < MAX_RETRIES) {
             // Only log every 10th retry to avoid console spam
             if (retryCount % 10 === 0) {
@@ -412,98 +411,63 @@ function setupVehicleFinder(retryCount = 0) {
 
     // Vehicle finder elements found, proceed with setup
 
-if (manufacturerSelect) {
-    manufacturerSelect.addEventListener('change', (e) => {
-        const manufacturer = e.target.value;
-        if (manufacturer && vehicleData[manufacturer]) {
-            modelSelect.innerHTML = '<option value="">Select Model</option>';
-            vehicleData[manufacturer].models.forEach(model => {
-                const option = document.createElement('option');
-                option.value = model.toLowerCase();
-                option.textContent = model;
-                modelSelect.appendChild(option);
-            });
-            modelSelect.disabled = false;
-            yearSelect.disabled = true;
-            yearSelect.innerHTML = '<option value="">Select Year</option>';
-            // Enable button even with just manufacturer selected
-            findPartsBtn.disabled = false;
-        }
-    });
-}
-
-if (modelSelect) {
-    modelSelect.addEventListener('change', (e) => {
-        const manufacturer = manufacturerSelect.value;
-        if (manufacturer && vehicleData[manufacturer]) {
-            yearSelect.innerHTML = '<option value="">Select Year</option>';
-            vehicleData[manufacturer].years.forEach(year => {
-                const option = document.createElement('option');
-                option.value = year;
-                option.textContent = year;
-                yearSelect.appendChild(option);
-            });
-            yearSelect.disabled = false;
-            // Button should already be enabled, but ensure it is
-            findPartsBtn.disabled = false;
-        }
-    });
-}
-
-if (findPartsBtn) {
-    findPartsBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        console.log('🔍 Find Parts button clicked');
-        
-        const manufacturer = manufacturerSelect ? manufacturerSelect.value : '';
-        const model = modelSelect ? modelSelect.value : '';
-        const year = yearSelect ? yearSelect.value : '';
-        
-        console.log('📋 Selected values:', { manufacturer, model, year });
-        
-        // Allow navigation even if only manufacturer is selected (just filter by brand)
-        if (manufacturer) {
-            // Get display names
-            const manufacturerName = manufacturerSelect.options[manufacturerSelect.selectedIndex].text;
-            const modelName = model ? modelSelect.options[modelSelect.selectedIndex].text : '';
-            
-            // Map manufacturer value to actual car brand name
-            const brandMap = {
-                'maruti': 'Maruti Suzuki',
-                'hyundai': 'Hyundai',
-                'tata': 'Tata',
-                'mahindra': 'Mahindra',
-                'honda': 'Honda',
-                'toyota': 'Toyota',
-                'ford': 'Ford',
-                'volkswagen': 'Volkswagen'
-            };
-            
-            const carBrand = brandMap[manufacturer] || manufacturerName;
-            
-            // Build search query - include model if selected
-            const searchQuery = modelName || '';
-            
-            // Navigate to search results page with car brand filter and model search
-            const params = new URLSearchParams();
-            params.append('carBrand', carBrand);
-            if (searchQuery) {
-                params.append('search', searchQuery);
+    // Enable/disable button based on manufacturer selection
+    if (manufacturerSelect) {
+        manufacturerSelect.addEventListener('change', (e) => {
+            const manufacturer = e.target.value;
+            // Enable button when manufacturer is selected
+            if (findPartsBtn) {
+                findPartsBtn.disabled = !manufacturer;
             }
-            
-            const url = `category-parts.html?${params.toString()}`;
-            console.log('🚀 Navigating to:', url);
-            
-            window.location.href = url;
-        } else {
-            console.warn('⚠️ No manufacturer selected');
-            alert('Please select a manufacturer first');
-        }
-    });
-}
+        });
+    }
 
+    // Handle Find Parts button click
+    if (findPartsBtn) {
+        findPartsBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            console.log('🔍 Find Parts button clicked');
+            
+            const manufacturer = manufacturerSelect ? manufacturerSelect.value : '';
+            
+            console.log('📋 Selected manufacturer:', manufacturer);
+            
+            if (manufacturer) {
+                // Get display name
+                const manufacturerName = manufacturerSelect.options[manufacturerSelect.selectedIndex].text;
+                
+                // Map manufacturer value to actual car brand name
+                const brandMap = {
+                    'maruti': 'Maruti Suzuki',
+                    'hyundai': 'Hyundai',
+                    'tata': 'Tata',
+                    'mahindra': 'Mahindra',
+                    'honda': 'Honda',
+                    'toyota': 'Toyota',
+                    'ford': 'Ford',
+                    'volkswagen': 'Volkswagen'
+                };
+                
+                const carBrand = brandMap[manufacturer] || manufacturerName;
+                
+                // Navigate to search results page with car brand filter only
+                // Note: Model and year are not stored in database, so we only filter by carBrand
+                const params = new URLSearchParams();
+                params.append('carBrand', carBrand);
+                
+                const url = `category-parts.html?${params.toString()}`;
+                console.log('🚀 Navigating to:', url);
+                console.log('📊 Filtering by carBrand:', carBrand);
+                
+                window.location.href = url;
+            } else {
+                console.warn('⚠️ No manufacturer selected');
+                alert('Please select a manufacturer first');
+            }
+        });
+    }
 }
 
 // Initialize vehicle finder when DOM is ready
