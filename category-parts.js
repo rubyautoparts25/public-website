@@ -44,8 +44,12 @@ let partsData = [];
 async function initializePage() {
     // If vehicle filter or search exists but no category, show all parts matching filters
     if (!category && (carBrandFromUrl || searchFromUrl)) {
-        // Load all parts and filter by vehicle/search
-        await loadPartsData();
+        // Load parts from API with filters applied
+        const filters = {};
+        if (carBrandFromUrl) filters.carBrand = carBrandFromUrl;
+        if (searchFromUrl) filters.search = searchFromUrl;
+        
+        await loadPartsData(filters);
         // Set all parts as partsData for filtering
         const allParts = Object.values(PARTS_DATA).flat();
         partsData = allParts;
@@ -229,9 +233,22 @@ window.loadCategoryParts = loadCategoryParts;
 let PARTS_DATA = {};
 
 // Load parts data from API
-async function loadPartsData() {
+// Optional parameters: category, carBrand, partBrand, search
+async function loadPartsData(filters = {}) {
     try {
-        const response = await fetch(`${window.API_BASE_URL}/parts`);
+        // Build query string from filters
+        const queryParams = new URLSearchParams();
+        if (filters.category) queryParams.append('category', filters.category);
+        if (filters.carBrand) queryParams.append('carBrand', filters.carBrand);
+        if (filters.partBrand) queryParams.append('partBrand', filters.partBrand);
+        if (filters.search) queryParams.append('search', filters.search);
+        
+        const queryString = queryParams.toString();
+        const apiUrl = queryString 
+            ? `${window.API_BASE_URL}/parts?${queryString}`
+            : `${window.API_BASE_URL}/parts`;
+        
+        const response = await fetch(apiUrl);
         
         if (response.ok) {
             const result = await response.json();
@@ -288,7 +305,7 @@ async function loadPartsData() {
                 }
             });
             
-            console.log('✅ Loaded', allParts.length, 'parts from API');
+            console.log('✅ Loaded', allParts.length, 'parts from API', filters ? `with filters: ${JSON.stringify(filters)}` : '');
             console.log('📊 Parts by category:', Object.keys(PARTS_DATA).filter(cat => PARTS_DATA[cat].length > 0).map(cat => `${cat}: ${PARTS_DATA[cat].length}`).join(', '));
         } else {
             console.warn('Could not load parts from API, using fallback data');
