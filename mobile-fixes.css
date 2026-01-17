@@ -213,6 +213,43 @@ html, body {
         border-radius: 12px !important;
         background: #ffffff !important;
         box-sizing: border-box !important;
+        text-overflow: ellipsis !important;
+        overflow: hidden !important;
+        white-space: nowrap !important;
+    }
+    
+    .mobile-search-input::placeholder {
+        overflow: visible !important;
+        white-space: normal !important;
+        text-overflow: clip !important;
+        word-wrap: break-word !important;
+        line-height: 1.4 !important;
+    }
+    
+    /* Desktop search input on mobile */
+    .search-input {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: auto !important;
+        padding: 12px 45px 12px 15px !important;
+        font-size: 14px !important;
+        box-sizing: border-box !important;
+        text-overflow: ellipsis !important;
+        overflow: hidden !important;
+        white-space: nowrap !important;
+    }
+    
+    .search-input::placeholder {
+        overflow: visible !important;
+        white-space: normal !important;
+        text-overflow: clip !important;
+        word-wrap: break-word !important;
+        line-height: 1.4 !important;
+    }
+    
+    .search-input:focus {
+        width: 100% !important;
+        max-width: 100% !important;
     }
     
     .mobile-search-input:focus {

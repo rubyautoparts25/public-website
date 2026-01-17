@@ -612,6 +612,16 @@ body.splash-active {
     min-width: 150px;
     transition: all 0.3s var(--ease-out-expo);
     background: rgba(255, 255, 255, 0.9);
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.search-input::placeholder {
+    overflow: visible;
+    white-space: normal;
+    text-overflow: clip;
 }
 
 .search-input:focus {
