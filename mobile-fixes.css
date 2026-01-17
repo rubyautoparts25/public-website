@@ -1,9 +1,8 @@
 /* ============================================
-   PREMIUM MOBILE UI/UX DESIGN
-   Mobile-First Approach with Modern Patterns
+   MOBILE UI FIXES - WORKING VERSION
    ============================================ */
 
-/* CRITICAL: Prevent all horizontal scrolling */
+/* Prevent horizontal scrolling */
 * {
     max-width: 100vw !important;
     box-sizing: border-box !important;
@@ -13,19 +12,18 @@ html, body {
     overflow-x: hidden !important;
     width: 100% !important;
     max-width: 100vw !important;
-    position: relative !important;
 }
 
 /* ============================================
-   MOBILE NAVIGATION - PREMIUM DESIGN
+   MOBILE NAVIGATION (768px and below)
    ============================================ */
 @media (max-width: 768px) {
-    /* Hide top bar on mobile - save space, move contact to menu */
+    /* Hide top bar on mobile */
     .top-bar {
         display: none !important;
     }
     
-    /* Modern Sticky Navigation Bar */
+    /* Fixed Navigation Bar */
     .navbar {
         position: fixed !important;
         top: 0 !important;
@@ -35,9 +33,8 @@ html, body {
         max-width: 100vw !important;
         padding: 0 !important;
         background: #ffffff !important;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08) !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
         z-index: 10000 !important;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
     }
     
     .nav-content {
@@ -46,17 +43,15 @@ html, body {
         justify-content: space-between !important;
         padding: 12px 16px !important;
         width: 100% !important;
-        max-width: 100% !important;
         gap: 12px !important;
     }
     
-    /* Logo - Compact and Clean */
+    /* Logo */
     .logo-container {
         display: flex !important;
         align-items: center !important;
         gap: 10px !important;
         flex-shrink: 0 !important;
-        order: 1 !important;
     }
     
     .logo {
@@ -70,17 +65,9 @@ html, body {
         color: var(--orange-dark) !important;
     }
     
-    /* Search Icon Button - Modern Design */
-    .nav-actions {
-        display: flex !important;
-        align-items: center !important;
-        gap: 8px !important;
-        order: 2 !important;
-        flex-shrink: 0 !important;
-    }
-    
+    /* Hide desktop search, show icon button */
     .search-container {
-        display: none !important; /* Hide search bar, show icon instead */
+        display: none !important;
     }
     
     /* Search Icon Button */
@@ -97,15 +84,13 @@ html, body {
         font-size: 1.2rem !important;
         cursor: pointer !important;
         transition: all 0.2s ease !important;
-        -webkit-tap-highlight-color: transparent !important;
     }
     
     .search-icon-btn:active {
         background: rgba(255, 107, 53, 0.1) !important;
-        transform: scale(0.95) !important;
     }
     
-    /* Hamburger Menu - Premium Design */
+    /* Hamburger Menu Button */
     .hamburger {
         display: flex !important;
         flex-direction: column !important;
@@ -118,9 +103,7 @@ html, body {
         border: none !important;
         cursor: pointer !important;
         gap: 5px !important;
-        order: 3 !important;
         flex-shrink: 0 !important;
-        -webkit-tap-highlight-color: transparent !important;
         transition: all 0.3s ease !important;
     }
     
@@ -145,29 +128,49 @@ html, body {
         transform: rotate(-45deg) translate(6px, -6px) !important;
     }
     
-    /* Full-Screen Mobile Menu - Premium Design */
+    /* Mobile Menu Overlay */
+    .mobile-menu-overlay {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        background: rgba(0, 0, 0, 0.5) !important;
+        z-index: 99998 !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .mobile-menu-overlay.active {
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    /* Mobile Menu */
     .nav-menu {
         position: fixed !important;
         top: 0 !important;
         left: -100% !important;
-        width: 100vw !important;
-        max-width: 100vw !important;
+        width: 85% !important;
+        max-width: 400px !important;
         height: 100vh !important;
         background: #ffffff !important;
         flex-direction: column !important;
         padding: 0 !important;
         margin: 0 !important;
+        list-style: none !important;
         overflow-y: auto !important;
         transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
         z-index: 99999 !important;
-        box-shadow: none !important;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1) !important;
     }
     
     .nav-menu.active {
         left: 0 !important;
     }
     
-    /* Menu Header with Close Button */
+    /* Menu Header */
     .mobile-menu-header {
         display: flex !important;
         align-items: center !important;
@@ -178,6 +181,8 @@ html, body {
         position: sticky !important;
         top: 0 !important;
         z-index: 1 !important;
+        list-style: none !important;
+        margin: 0 !important;
     }
     
     .mobile-menu-title {
@@ -186,11 +191,13 @@ html, body {
         color: var(--orange-dark) !important;
     }
     
-    /* Search Bar in Menu - Prominent */
+    /* Search in Menu */
     .mobile-search-wrapper {
         padding: 16px 20px !important;
         border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
         background: #f8f9fa !important;
+        list-style: none !important;
+        margin: 0 !important;
     }
     
     .mobile-search-container {
@@ -206,13 +213,11 @@ html, body {
         border-radius: 12px !important;
         background: #ffffff !important;
         box-sizing: border-box !important;
-        transition: all 0.2s ease !important;
     }
     
     .mobile-search-input:focus {
         outline: none !important;
         border-color: var(--orange-dark) !important;
-        box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1) !important;
     }
     
     .mobile-search-btn {
@@ -230,15 +235,9 @@ html, body {
         align-items: center !important;
         justify-content: center !important;
         cursor: pointer !important;
-        transition: all 0.2s ease !important;
     }
     
-    .mobile-search-btn:active {
-        background: var(--orange-medium) !important;
-        transform: translateY(-50%) scale(0.95) !important;
-    }
-    
-    /* Menu Items - Clean and Spacious */
+    /* Menu Items */
     .nav-menu > li {
         width: 100% !important;
         border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
@@ -254,25 +253,20 @@ html, body {
         color: var(--text-dark) !important;
         text-decoration: none !important;
         width: 100% !important;
-        transition: all 0.2s ease !important;
-        -webkit-tap-highlight-color: rgba(255, 107, 53, 0.1) !important;
     }
     
     .nav-link:active {
         background: rgba(255, 107, 53, 0.08) !important;
     }
     
-    .nav-link i {
-        font-size: 0.9rem !important;
-        color: rgba(0, 0, 0, 0.4) !important;
-    }
-    
-    /* Contact Info in Menu */
+    /* Contact Section */
     .mobile-contact-section {
         padding: 20px !important;
         background: #f8f9fa !important;
         border-top: 1px solid rgba(0, 0, 0, 0.08) !important;
         margin-top: auto !important;
+        list-style: none !important;
+        margin: 0 !important;
     }
     
     .mobile-contact-item {
@@ -290,7 +284,7 @@ html, body {
         color: var(--orange-dark) !important;
     }
     
-    /* Social Links in Menu */
+    /* Social Links */
     .mobile-social-links {
         display: flex !important;
         gap: 12px !important;
@@ -310,52 +304,20 @@ html, body {
         justify-content: center !important;
         text-decoration: none !important;
         font-size: 1.1rem !important;
-        transition: all 0.2s ease !important;
     }
     
-    .mobile-social-link:active {
-        transform: scale(0.95) !important;
-        background: var(--orange-medium) !important;
-    }
-    
-    /* Overlay when menu is open */
-    .mobile-menu-overlay {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        right: 0 !important;
-        bottom: 0 !important;
-        background: rgba(0, 0, 0, 0.5) !important;
-        z-index: 99998 !important;
-        opacity: 0 !important;
-        visibility: hidden !important;
-        transition: all 0.3s ease !important;
-    }
-    
-    .mobile-menu-overlay.active {
-        opacity: 1 !important;
-        visibility: visible !important;
-    }
-    
-    /* Adjust hero section for fixed navbar */
+    /* Adjust hero for fixed navbar */
     .hero {
         padding-top: 80px !important;
-        padding-bottom: 40px !important;
     }
     
     /* Typography */
     body {
         font-size: 16px !important;
-        line-height: 1.6 !important;
     }
     
     h1, .hero-title {
         font-size: 1.75rem !important;
-        line-height: 1.3 !important;
-    }
-    
-    h2 {
-        font-size: 1.5rem !important;
     }
     
     /* Buttons */
@@ -363,7 +325,6 @@ html, body {
         min-height: 48px !important;
         padding: 14px 24px !important;
         font-size: 16px !important;
-        border-radius: 12px !important;
     }
     
     /* Inputs */
@@ -371,7 +332,6 @@ html, body {
         font-size: 16px !important;
         padding: 14px 16px !important;
         min-height: 48px !important;
-        border-radius: 12px !important;
     }
     
     /* Container */
@@ -379,10 +339,9 @@ html, body {
         padding: 0 16px !important;
     }
     
-    /* Grids - Single Column */
+    /* Grids */
     .categories-grid,
-    .parts-grid,
-    .products-grid {
+    .parts-grid {
         grid-template-columns: 1fr !important;
         gap: 16px !important;
     }
@@ -391,7 +350,6 @@ html, body {
     .category-card,
     .part-card {
         padding: 20px !important;
-        border-radius: 12px !important;
     }
 }
 
