@@ -38,22 +38,63 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Mobile menu toggle
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
+// Premium Mobile Menu Toggle
+const hamburger = document.querySelector('#hamburgerMenu');
+const closeMenuBtn = document.querySelector('#closeMenuBtn');
+const navMenu = document.querySelector('#mobileNavMenu');
+const mobileMenuOverlay = document.querySelector('#mobileMenuOverlay');
+const mobileSearchBtn = document.querySelector('#mobileSearchBtn');
 
-if (hamburger && navMenu) {
-    hamburger.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        hamburger.classList.toggle('active');
-        // Prevent body scroll when menu is open
-        if (navMenu.classList.contains('active')) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = '';
-        }
+function openMobileMenu() {
+    if (navMenu) {
+        navMenu.classList.add('active');
+        if (mobileMenuOverlay) mobileMenuOverlay.classList.add('active');
+        if (hamburger) hamburger.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeMobileMenu() {
+    if (navMenu) {
+        navMenu.classList.remove('active');
+        if (mobileMenuOverlay) mobileMenuOverlay.classList.remove('active');
+        if (hamburger) hamburger.classList.remove('active');
+        if (closeMenuBtn) closeMenuBtn.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+if (hamburger) {
+    hamburger.addEventListener('click', openMobileMenu);
+}
+
+if (closeMenuBtn) {
+    closeMenuBtn.addEventListener('click', closeMobileMenu);
+}
+
+if (mobileMenuOverlay) {
+    mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+}
+
+// Mobile search button - opens menu with search focused
+if (mobileSearchBtn) {
+    mobileSearchBtn.addEventListener('click', () => {
+        openMobileMenu();
+        setTimeout(() => {
+            const mobileSearchInput = document.querySelector('#mobileSearchInput');
+            if (mobileSearchInput) {
+                mobileSearchInput.focus();
+            }
+        }, 300);
     });
 }
+
+// Close menu when clicking nav links
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        closeMobileMenu();
+    });
+});
 
 // Close mobile menu when clicking on a link
 document.querySelectorAll('.nav-link').forEach(link => {
